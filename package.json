@@ -1,0 +1,15 @@
+{
+  "name": "typescripttask1",
+  "version": "1.0.0",
+  "description": "\u0016TypeScript basic test task 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./dist/js/index.js"
+  },
+  "author": "Flexandr",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  }
+}
