@@ -21,11 +21,11 @@ var MilitaryRocket = (function (_super) {
     __extends(MilitaryRocket, _super);
     function MilitaryRocket() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = "TOP SECRET";
+        _this.name = "TOP_SECRET";
         return _this;
     }
     MilitaryRocket.prototype.launch = function () {
-        console.log("TOP SECRET");
+        console.log("TOP_SECRET");
     };
     return MilitaryRocket;
 }(RocketBase_1.RocketBase));

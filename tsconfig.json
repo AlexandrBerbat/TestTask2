@@ -7,12 +7,6 @@
         "removeComments": true,
         "noLib": false,
         "outDir": "./dist/js"
+
     }
-    // "include": [
-    //     "**/*"
-    // ],
-    // "exclude": [
-    //     "node_modules",
-    //     "**/*.src/scripts"
-    // ]
 }
