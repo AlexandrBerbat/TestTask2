@@ -1,2 +1,1 @@
-cd "dist/js"
-start npm run start
+start npm run start:demo

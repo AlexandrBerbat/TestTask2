@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./dist/js/server/bin/www",
+    "start:demo":"node ./dist/js/core/index.js",
+    "start:server":"node ./dist/js/server/bin/www",
+    
     "compile": "tsc",
     "bin": "cp -r ./src/scripts/server/bin/ ./dist/js/server/bin",
     "views": "cp -r ./src/scripts/server/views ./dist/js/server/views",

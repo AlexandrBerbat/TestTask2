@@ -4,20 +4,29 @@ var router = express.Router();
 const { StartPort } = require("../../core/StartPort");
 let rocketsArr = new StartPort().getAllRockets();
 
+let IfRocketExists = (rocketsArr: any[], currentRocketName: any) => {
+  let result: boolean = false;
+
+  rocketsArr.forEach(item => {
+    if (currentRocketName === item.name) {
+      result = true
+    }
+  });
+
+  return result;
+}
+
 
 router.get('/list', (req, res, next) => {
   rocketsArr.sort((a, b) => a.name > b.name ? 1 : -1);
 
   let resultArrStr: string = "";
-  // rocketsArr.foreach(item => resultArrStr.push(`<li>${item.name}</li>`));
 
   rocketsArr.forEach((item) => {
     resultArrStr += `<li>${item.name}</li>`;
   })
 
   res.send(`<ul>${resultArrStr}</ul>`)
-
-  // res.sendStatus(200);
 });
 
 router.get('/:name', (req, res, next) => {
@@ -30,29 +39,41 @@ router.get('/:name', (req, res, next) => {
     res.sendStatus(400)
   } else {
 
-    rocketsArr.forEach(item => {
-      if (reqName === item.name) {
+    if (IfRocketExists(rocketsArr, reqName)) {
 
-        correctName = true;
+      correctName = true;
 
-        resultJson = {
-          "status": 200,
-          "data": {
-            "name": item.name,
-            "data": new Date().toISOString()
-          }
-        };
-      }
-    });
+      resultJson = {
+        "status": 200,
+        "data": {
+          "name": reqName,
+          "data": new Date().toISOString()
+        }
+      };
+    }
 
     if (correctName == false) {
       res.sendStatus(404)
-    }else {
+    } else {
       res.json(resultJson)
     }
   }
 
 
 });
+
+router.post("/add", (req, res, next) => {
+  console.log(req.body);
+  if (IfRocketExists(rocketsArr, req.body.name) || req.body.name === "list") {
+    res.sendStatus(409);
+  }
+  else {
+    rocketsArr.push({ "name": req.body.name })
+    console.log("Added successfully!");
+    res.sendStatus(200);
+
+  }
+})
+
 
 module.exports = router;
